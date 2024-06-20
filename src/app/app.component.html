@@ -1,5 +1,5 @@
 <div>
-  <form>
+  <form [formGroup]="form">
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -9,13 +9,13 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Nome</mat-label>
-            <input matInput placeholder="Nome">
+            <input name="name" formControlName="name" matInput placeholder="Nome">
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Raça</mat-label>
-            <input matInput placeholder="Raça">
+            <input name="race" formControlName="race" matInput placeholder="Raça">
           </mat-form-field>
         </div>
 
