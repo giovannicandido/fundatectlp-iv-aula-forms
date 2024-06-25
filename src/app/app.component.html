@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="save()">
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -18,10 +18,18 @@
             <input name="race" formControlName="race" matInput placeholder="Raça">
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Vacinas</mat-label>
+            <mat-select formControlName="vacine">
+              <mat-option *ngFor="let v of vacines" [value]="v">{{v}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
       </mat-card-content>
       <mat-card-actions>
-        <button (click)="save()" mat-button>Salvar</button>
+        <button type="submit" mat-button>Salvar</button>
       </mat-card-actions>
     </mat-card>
   </form>
