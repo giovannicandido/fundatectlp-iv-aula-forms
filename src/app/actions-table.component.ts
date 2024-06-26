@@ -31,7 +31,12 @@ export const DEFAULT_ACTIONS: ActionType[] = [
         MatButtonModule,
         MatIconModule
     ],
-    templateUrl: 'actions-table.component.html'
+    templateUrl: 'actions-table.component.html',
+    styles: [
+        `.actions {
+            border: 2px solid blue
+        }`
+    ]
 })
 export class ActionsTableComponent implements OnInit {
 

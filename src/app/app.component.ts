@@ -13,6 +13,7 @@ import { DogService } from './services';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { ActionType, ActionsTableComponent } from './actions-table.component';
+import { HelloComponent } from './hello.component';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,8 @@ import { ActionType, ActionsTableComponent } from './actions-table.component';
     MatSortModule,
     MatTableModule,
     ActionsTableComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HelloComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -40,7 +42,17 @@ export class AppComponent implements OnInit {
   // For Angular Material Table
   displayedColumns: string[] = ['name', 'race', 'vacine', 'action'];
   //----
-
+  activeActions: Array<ActionType> = [
+    {
+      name: "delete",
+      icon: "delete",
+      color: "primary"
+    }, {
+      name: "android",
+      icon: "android",
+      color: "secondary"
+    }
+  ]
   form: FormGroup
 
   constructor(formBuilder: FormBuilder, private dogService: DogService) {
@@ -67,6 +79,8 @@ export class AppComponent implements OnInit {
   execute(action: ActionType) {
     if(action.name === "delete") {
       this.dogService.deleteItem(action.value)
+    } else if(action.name === "android") {
+      console.log('Virar um android... para: ' + action.value?.name)
     }
   }
 
