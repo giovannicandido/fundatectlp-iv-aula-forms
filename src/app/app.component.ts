@@ -10,6 +10,8 @@ import { RouterOutlet } from '@angular/router';
 import { DOG_KEY, Dog } from './models'
 import { CommonModule } from '@angular/common';
 import { DogService } from './services';
+import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +25,8 @@ import { DogService } from './services';
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
+    MatSortModule,
+    MatTableModule,
     ReactiveFormsModule
   ],
   templateUrl: './app.component.html',
@@ -31,6 +35,10 @@ import { DogService } from './services';
 export class AppComponent implements OnInit {
   dogs: Dog[] = []
   vacines = ['Vacina 1', 'Vacina 2', 'Vacina 3']
+  // For Angular Material Table
+  displayedColumns: string[] = ['name', 'race', 'vacine'];
+  //----
+
   form: FormGroup
 
   constructor(formBuilder: FormBuilder, private dogService: DogService) {
