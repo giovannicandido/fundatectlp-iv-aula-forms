@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -55,6 +55,9 @@ export class AppComponent implements OnInit {
   ]
   form: FormGroup
 
+  @ViewChild("btnSubmit")
+  btnSubmit!: MatButton
+
   constructor(formBuilder: FormBuilder, private dogService: DogService) {
     this.form = formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(50)])], // array de configurações
@@ -74,6 +77,8 @@ export class AppComponent implements OnInit {
     } else {
       console.error('formulario invalido')
     }
+    console.log(this.btnSubmit)
+    this.btnSubmit.disabled = true
   }
 
   execute(action: ActionType) {

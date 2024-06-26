@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'app-hello',
@@ -6,7 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
     template: `
         <h1>{{nome}}</h1>
         <h2>{{cargo}}</h2>
-    `
+    `,
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 
 export class HelloComponent implements OnInit {
