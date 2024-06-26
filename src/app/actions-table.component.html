@@ -1,0 +1,5 @@
+<div class="actions">
+    <button *ngFor="let action of activeActions" mat-icon-button [color]="action.color" (click)="executeAction(action)">
+        <mat-icon>{{action.icon}}</mat-icon>
+    </button>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { DogService } from './services';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { ActionType, ActionsTableComponent } from './actions-table.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
     MatSelectModule,
     MatSortModule,
     MatTableModule,
+    ActionsTableComponent,
     ReactiveFormsModule
   ],
   templateUrl: './app.component.html',
@@ -36,7 +38,7 @@ export class AppComponent implements OnInit {
   dogs: Dog[] = []
   vacines = ['Vacina 1', 'Vacina 2', 'Vacina 3']
   // For Angular Material Table
-  displayedColumns: string[] = ['name', 'race', 'vacine'];
+  displayedColumns: string[] = ['name', 'race', 'vacine', 'action'];
   //----
 
   form: FormGroup
@@ -55,9 +57,16 @@ export class AppComponent implements OnInit {
   save() {
     if(this.form.valid) {
       this.dogService.saveDog(this.form.value)
+      this.dogs = this.dogService.listAll()
       console.log('formulario valido')
     } else {
       console.error('formulario invalido')
+    }
+  }
+
+  execute(action: ActionType) {
+    if(action.name === "delete") {
+      this.dogService.deleteItem(action.value)
     }
   }
 
