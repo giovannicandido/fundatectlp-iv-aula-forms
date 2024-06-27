@@ -5,3 +5,8 @@ export interface Dog {
     race: string
     vacines?: Array<string>
 }
+
+export interface Produto {
+    nome: string
+    preco: number
+}

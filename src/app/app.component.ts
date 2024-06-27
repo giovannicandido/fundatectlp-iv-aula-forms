@@ -9,11 +9,13 @@ import {MatSelectModule} from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
 import { DOG_KEY, Dog } from './models'
 import { CommonModule } from '@angular/common';
-import { DogService } from './services';
+import { CarrinhoService, DogService } from './services';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { ActionType, ActionsTableComponent } from './actions-table.component';
 import { HelloComponent } from './hello.component';
+import { CarrinhoComponent } from './carrinho.component';
+import { PerfilComponent } from './perfil.component';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +33,10 @@ import { HelloComponent } from './hello.component';
     MatTableModule,
     ActionsTableComponent,
     ReactiveFormsModule,
-    HelloComponent
+    HelloComponent,
+    CarrinhoComponent,
+    PerfilComponent
+
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -58,7 +63,10 @@ export class AppComponent implements OnInit {
   @ViewChild("btnSubmit")
   btnSubmit!: MatButton
 
-  constructor(formBuilder: FormBuilder, private dogService: DogService) {
+  constructor(formBuilder: FormBuilder,
+    private dogService: DogService,
+    public carrinhoService: CarrinhoService
+  ) {
     this.form = formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(50)])], // array de configurações
       race: ['', Validators.compose([Validators.required, Validators.minLength(5)])], // compose junta mais de uma validação
