@@ -16,6 +16,7 @@ import { ActionType, ActionsTableComponent } from './actions-table.component';
 import { HelloComponent } from './hello.component';
 import { CarrinhoComponent } from './carrinho.component';
 import { PerfilComponent } from './perfil.component';
+import { createCPFValidator } from './validators/cpf.validator';
 
 @Component({
   selector: 'app-root',
@@ -70,7 +71,8 @@ export class AppComponent implements OnInit {
     this.form = formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(50)])], // array de configurações
       race: ['', Validators.compose([Validators.required, Validators.minLength(5)])], // compose junta mais de uma validação
-      vacine: ['']
+      vacine: [''],
+      cpf: ['', createCPFValidator]
     })
   }
   ngOnInit(): void {
@@ -86,7 +88,7 @@ export class AppComponent implements OnInit {
       console.error('formulario invalido')
     }
     console.log(this.btnSubmit)
-    this.btnSubmit.disabled = true
+    //this.btnSubmit.disabled = true
   }
 
   execute(action: ActionType) {

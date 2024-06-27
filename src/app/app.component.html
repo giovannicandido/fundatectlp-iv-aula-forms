@@ -11,12 +11,23 @@
             <mat-label>Nome</mat-label>
             <input name="name" formControlName="name" matInput placeholder="Nome">
           </mat-form-field>
+
+          <p class="erro" *ngIf="form.controls['name'].getError('minLength')">
+            Nome tem que ter no minimo 5 caracteres
+          </p>
         </div>
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Raça</mat-label>
             <input name="race" formControlName="race" matInput placeholder="Raça">
           </mat-form-field>
+          <p class="erro" *ngIf="form.controls['race'].getError('required')">
+            Raça é obrigatório
+          </p>
+
+          <p class="erro" *ngIf="form.controls['race'].getError('minLength')">
+            Raça tem que ter no minimo 5 caracteres
+          </p>
         </div>
         <div>
           <mat-form-field appearance="fill">
@@ -25,6 +36,16 @@
               <mat-option *ngFor="let v of vacines" [value]="v">{{v}}</mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Cpf Dono</mat-label>
+            <input name="cpf" formControlName="cpf" matInput placeholder="CPF Dono">
+          </mat-form-field>
+          <p class="erro" *ngIf="form.controls['cpf'].getError('cpfError')">
+            Cpf não é válido
+          </p>
         </div>
 
       </mat-card-content>
